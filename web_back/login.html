@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/iconfont.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+
 </head>
 
 <body>
@@ -23,13 +24,41 @@
             <form class="login_form">
                 <i class="iconfont icon-user"></i>
                 <i class="iconfont icon-key"></i>
-                <input type="text" class="input_txt" placeholder="邮箱/手机号">
-                <input type="password" class="input_pass" placeholder="密码">
-                <input type="submit" class="input_sub" value="登 录">
+                <input id="myName" type="text" class="input_txt" placeholder="用户名">
+                <input id="myPassword" type="password" class="input_pass" placeholder="密码">
+                <input id="btnLogin" type="button" class="input_sub" value="登 录">
             </form>
         </div>
 
-    </div> 
+    </div>
+    <script src="js/jquery-1.12.4.min.js"></script>
+
+    <script>
+        $('#btnLogin').click(function() {
+            var myName = $('#myName').val().trim()
+            var myPassword = $('#myPassword').val().trim()
+            console.log(myName, myPassword);
+            if (myName === '' || myPassword === '') {
+                alert('请输入用户名或密码');
+                return;
+            }
+            // $.post(地址，参数，回调函数)
+            $.post('http://localhost:8000/admin/login', {
+                    user_name: myName,
+                    password: myPassword
+                },
+                function(res) {
+                    console.log(res);
+                    if (res.code === 200) {
+                        alert('登陆成功')
+                    } else {
+                        // alert（'res.msg'）
+                        alert(res.msg)
+                    }
+
+                })
+        })
+    </script>
 
 </body>
 
