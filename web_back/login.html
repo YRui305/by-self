@@ -33,32 +33,25 @@
 
     </div>
     <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="./js/user/user.js"></script>
 
+    <!-- <script>
+        $.post('http://localhost:8000/admin/login', {
+                user_name: myName,
+                password: myPassword
+            },
+            function(res) {
+                console.log(res);
+                if (res.code === 200) {
+                    // alert('登陆成功')
+                    location.href = './index.html'
+                } else {
+                    // alert（'res.msg'）
+                    alert(res.msg)
+                }
+            })
+    </script> -->
     <script>
-        var user = {
-            login: function() {
-                $.post('http://localhost:8000/admin/login', {
-                        user_name: myName,
-                        password: myPassword
-                    },
-                    function(res) {
-                        console.log(res);
-                        if (res.code === 200) {
-                            // alert('登陆成功')
-                            location.href = './index.html'
-                        } else {
-                            // alert（'res.msg'）
-                            alert(res.msg)
-                        }
-                    })
-            }
-        }
-    </script>
-    <script>
-        // var user ={
-
-        // } ;
-
         $('#btnLogin').click(function() {
             var myName = $('#myName').val().trim()
             var myPassword = $('#myPassword').val().trim()
@@ -67,20 +60,21 @@
                 alert('请输入用户名或密码');
                 return;
             }
-            // $.post(地址，参数，回调函数)
-            // $.post('http://localhost:8000/admin/login', {
-            //         user_name: myName,
-            //         password: myPassword
-            //     },
-            //     function(res) {
-            //         console.log(res);
-            //         if (res.code === 200) {
-            //             // alert('登陆成功')
-            //             location.href = './index.html'
-            //         } else {
-            //             // alert（'res.msg'）
-            //             alert(res.msg)
-            //         }
+            user.login(myName, myPassword)
+                // $.post(地址，参数，回调函数)
+                // $.post('http://localhost:8000/admin/login', {
+                //         user_name: myName,
+                //         password: myPassword
+                //     },
+                //     function(res) {
+                //         console.log(res);
+                //         if (res.code === 200) {
+                //             // alert('登陆成功')
+                //             location.href = './index.html'
+                //         } else {
+                //             // alert（'res.msg'）
+                //             alert(res.msg)
+                //         }
 
             //     })
         })
