@@ -18,8 +18,8 @@
     <div class="sider">
         <a href="#" class="logo"><img src="images/logo02.png" alt="logo"></a>
         <div class="user_info">
-            <img src="images/2.jpg" alt="person">
-            <span>欢迎&nbsp;&nbsp;李思思</span>
+            <img id='userImg' src="images/2.jpg" alt="person">
+            <span>欢迎&nbsp;&nbsp;<i>李思思</i></span>
             <b>管理员</b>
         </div>
         <div class="menu">
@@ -110,18 +110,32 @@
 
     <script src='./js/bootstrap/js/bootstrap.min.js'></script>
     <script>
-        $.get('http://localhost:8000/admin/getuser', function(res) {
-                console.log(res);
-
-            })
-            // 用户点击退出
-        $('#btnLogout').click(function() {
-            $.post('http://localhost:8000/admin/logout', function(res) {
-                // console.log(res);
-                if (res.code === 200) {
-                    location.href = './login.html'
+        var user = {
+                logout: function() {
+                    $.post('http://localhost:8000/admin/logout', function(res) {
+                        // console.log(res);
+                        if (res.code === 200) {
+                            location.href = './login.html'
+                        }
+                    })
                 }
-            })
+            }
+            // $.get('http://localhost:8000/admin/getuser', function(res) {
+            //         console.log(res);
+            //         if (res.code === 200)
+
+        //     })
+    </script>
+    <script>
+        // 用户点击退出
+        $('#btnLogout').click(function() {
+            user.logout()
+                // $.post('http://localhost:8000/admin/logout', function(res) {
+                //     // console.log(res);
+                //     if (res.code === 200) {
+                //         location.href = './login.html'
+                //     }
+                // })
         })
     </script>
 
