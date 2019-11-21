@@ -23,5 +23,16 @@ var user = {
                     alert(res.msg)
                 }
             })
+    },
+    getInfo: function() {
+        // $.get(地址，参数，回调)
+        $.get(baseUrl + 'admin/getuser', function(res) {
+            console.log(res);
+            if (res.code === 200) {
+                $("#userImg").prop('src', res.data.user_pic)
+                $('#userName').text(res.data.nickname)
+            }
+
+        })
     }
 }
