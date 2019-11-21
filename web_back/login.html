@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/iconfont.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="./js/bootstrap/css/bootstrap.min.css">
 
 </head>
 
@@ -34,6 +35,30 @@
     <script src="js/jquery-1.12.4.min.js"></script>
 
     <script>
+        var user = {
+            login: function() {
+                $.post('http://localhost:8000/admin/login', {
+                        user_name: myName,
+                        password: myPassword
+                    },
+                    function(res) {
+                        console.log(res);
+                        if (res.code === 200) {
+                            // alert('登陆成功')
+                            location.href = './index.html'
+                        } else {
+                            // alert（'res.msg'）
+                            alert(res.msg)
+                        }
+                    })
+            }
+        }
+    </script>
+    <script>
+        // var user ={
+
+        // } ;
+
         $('#btnLogin').click(function() {
             var myName = $('#myName').val().trim()
             var myPassword = $('#myPassword').val().trim()
@@ -43,21 +68,21 @@
                 return;
             }
             // $.post(地址，参数，回调函数)
-            $.post('http://localhost:8000/admin/login', {
-                    user_name: myName,
-                    password: myPassword
-                },
-                function(res) {
-                    console.log(res);
-                    if (res.code === 200) {
-                        // alert('登陆成功')
-                        location.href = './index.html'
-                    } else {
-                        // alert（'res.msg'）
-                        alert(res.msg)
-                    }
+            // $.post('http://localhost:8000/admin/login', {
+            //         user_name: myName,
+            //         password: myPassword
+            //     },
+            //     function(res) {
+            //         console.log(res);
+            //         if (res.code === 200) {
+            //             // alert('登陆成功')
+            //             location.href = './index.html'
+            //         } else {
+            //             // alert（'res.msg'）
+            //             alert(res.msg)
+            //         }
 
-                })
+            //     })
         })
     </script>
 
