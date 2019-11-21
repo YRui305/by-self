@@ -1,6 +1,7 @@
+var baseUrl = 'http://localhost:8000/'
 var user = {
     logout: function() {
-        $.post('http://localhost:8000/admin/logout', function(res) {
+        $.post(baseUrl + 'admin/logout', function(res) {
             // console.log(res);
             if (res.code === 200) {
                 location.href = './login.html'
@@ -8,7 +9,7 @@ var user = {
         })
     },
     login: function(myName, myPassword) {
-        $.post('http://localhost:8000/admin/login', {
+        $.post(baseUrl + 'admin/login', {
                 user_name: myName,
                 password: myPassword
             },
