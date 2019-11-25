@@ -29,8 +29,30 @@
             </form>
         </div>
     </div>
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">系统提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="msgInfo">不能为空</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
     <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="./js/bootstrap/js/bootstrap.min.js"></script>
     <script src="./js/user/user.js"></script>
+    <script src="./js/utils/config.js"></script>
     <!-- <script>
         $.post('http://localhost:8000/admin/login', {
                 user_name: myName,
@@ -53,10 +75,21 @@
             var myPassword = $('#myPassword').val().trim()
             console.log(myName, myPassword);
             if (myName === '' || myPassword === '') {
-                alert('请输入用户名或密码');
+                // alert('请输入用户名或密码');
+                $('#msgInfo').text("不能为空")
+                $("#myModal").modal('show')
                 return;
             }
-            user.login(myName, myPassword)
+            user.login(myName, myPassword, function(res) {
+                    if (res.code === 200) {
+                        // alert('登陆成功')
+                        location.href = './index.html'
+                    } else {
+                        // alert（ 'res.msg'）
+                        $('#msgInfo').text(res.msg)
+                        $('#myModal').modal('show')
+                    }
+                })
                 // $.post(地址，参数，回调函数)
                 // $.post('http://localhost:8000/admin/login', {
                 //         user_name: myName,
