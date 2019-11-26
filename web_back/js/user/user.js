@@ -1,7 +1,7 @@
 var baseUrl = 'http://localhost:8000/'
 var user = {
     logout: function(callback) {
-        $.post(baseUrl + 'admin/logout', function(res) {
+        $.post(APIURLS.user_logout, function(res) {
             // console.log(res);
             callback(res)
                 // if (res.code === 200) {
@@ -10,7 +10,7 @@ var user = {
         })
     },
     login: function(myName, myPassword, callback) {
-        $.post(baseUrl + 'admin/login', {
+        $.post(APIURLS.user_login, {
                 user_name: myName,
                 password: myPassword
             },
@@ -28,7 +28,7 @@ var user = {
     },
     getInfo: function(callback) {
         // $.get(地址，参数，回调)
-        $.get(baseUrl + 'admin/getuser', function(res) {
+        $.get(APIURLS.user_getInfo, function(res) {
             callback(res)
                 // console.log(res);
                 // if (res.code === 200) {
